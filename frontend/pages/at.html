@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teachers' Portal</title>
+    <link rel="stylesheet" href="../styles/ats.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main>
+        <div class="ic">
+            <h3>
+              <i class="fa-solid fa-chalkboard-user"></i> Teachers' Portal 
+              <i class="fa-solid fa-arrow-right"></i>
+            </h3>
+            <div class="profile-info">
+              <img src="bg1.webp" alt="Profile Photo" class="profile-photo profile-pic">
+              <div class="profile-details">
+                <h2 class="name">John Doe</h2>
+                <p class="role">Senior Teacher</p>
+              </div>
+            </div>
+          </div>
+        <div class="bor">
+            <div class="str">
+                <a href="teacherinfo.html" class="pd"><i class="fa-solid fa-user"></i> Personal Details</a>
+                <a href="cm.html" class="cm"><i class="fa-solid fa-book-open-reader"></i> Course Management</a>
+                <a href="clm.html" class="ct"><i class="fa-solid fa-chalkboard"></i> Classroom</a>
+                <a href="ag.html" class="ag"><i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading</a>
+                <a href="at.html" class="at"><i class="fa-solid fa-clipboard-user"></i> Attendance Tracking</a>
+                <a href="ar.html" class="ar"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting</a>
+                <a href="teacher_blog_upload.html" class="ar"><i class="fa-solid fa-blog"></i> Add your blog</a>
+                <a href="teachportal.html" class="ar"><i class="fa-solid fa-sticky-note"></i>Update personal details</a>
+              </div>
+            <main class="content">
+                <section id="attendance-tracking" class="tab-content active">
+                    <h2>Attendance and Tracking</h2>
+                    
+                    <!-- Mark Attendance -->
+                    <div class="mark-attendance">
+                        <h3>Mark Attendance</h3>
+                        <form method="POST" action="/backend/att.php">
+                            <div class="form__group">
+                                <select id="class-select" name="class" class="form__field">
+                                    <option value="BIO101">Biology 101</option>
+                                    <option value="CHEM101">Chemistry 101</option>
+                                    <!-- More classes can go here -->
+                                </select>
+                                <label for="class-select" class="form__label">Select Class</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="date" id="attendance-date" name="date" class="form__field" required>
+                                <label for="attendance-date" class="form__label">Date</label><br/>
+                               
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Student ID</th>
+                                        <th>Present</th>
+                                        <th>Absent</th>
+                                        <th>Late</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>123456</td>
+                                        <td><input type="radio" name="students[123456]" value="present" required></td>
+                                        <td><input type="radio" name="students[123456]" value="absent" required></td>
+                                        <td><input type="radio" name="students[123456]" value="late" required></td>
+                                        <input type="hidden" name="student_names[123456]" value="John Doe">
+                                    </tr>
+                                    <!-- More student rows can go here -->
+                                     
+                                </tbody>
+                                <input type="text" id="dataDisplay" name="email" hidden>
+                            </table>
+                            <button type="submit" onclick="displayLocalStorageData()" class="save-button">Save Attendance</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </main>
+    <!--script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'login.html'; 
+            }
+        });
+    </script-->
+    <script>
+        const email = localStorage.getItem('email');
+        function displayLocalStorageData() {
+    // Retrieve data from local storage
+    const storedData = localStorage.getItem('email');
+
+    // Check if there is any data stored
+    if (storedData) {
+        // Display the data in the textbox
+        document.getElementById('dataDisplay').value = storedData;
+    } else {
+        // If no data is found, inform the user
+        document.getElementById('dataDisplay').value = 'No data found in local storage.';
+    }
+}
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'teacherlogin.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isteacher');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'teacherlogin.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+     
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+     </script>
+     <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('email');
+        if (!isLoggedIn) {
+            window.location.href = 'teacherlogin.html'; 
+        } else {
+            const email = localStorage.getItem('email');
+            fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.profile_pic) {
+                        document.querySelectorAll('.profile-pic').forEach(img => {
+                            img.src = `/backend/${data.profile_pic}`;
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching profile picture:', error);
+                });
+        
+        fetch(`/backend/fetch_name.php?email=${email}`)
+              .then(response => response.text())
+              .then(name => {
+                  document.querySelectorAll('.name').forEach(nameElement => {
+                      nameElement.textContent = name;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching name:', error);
+              });
+     
+          // Fetch the user's role
+          fetch(`/backend/fetch_role.php?email=${email}`)
+              .then(response => response.text())
+              .then(role => {
+                  document.querySelectorAll('.role').forEach(roleElement => {
+                      roleElement.textContent = role;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching role:', error);
+              });
+      }
+     });
+     </script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

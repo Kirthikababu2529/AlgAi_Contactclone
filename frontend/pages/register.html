@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>register</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../styles/style.css">
+   <link rel="stylesheet" href="../styles/styles.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <div class="logo-container">
+         <div class="logo">
+             <img src="../assests/logo2.jpg" alt="Logo">
+         </div>
+         <a href="home.html" class="logo-text">E-LEARNING</a>
+     </div>
+
+      <!-- <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form> -->
+
+      <div class="icons">
+         <!-- <div id="menu-btn" class="fas fa-bars"></div> -->
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <div class="flex-btn">
+            <a href="teacherlogin.html" class="option-btn">Are You A Teacher</a>
+            <a href="student_login.html" class="option-btn">Are You A Student</a>
+         </div>
+         <a href="register.html" class="btn">Register</a>
+         
+      </div>
+
+   </section>
+
+</header>   
+
+<!-- <div class="side-bar">
+
+ 
+</div> -->
+
+<section class="form-container">
+
+   <form action="/backend/register.php" method="post" enctype="multipart/form-data">
+      <h3>register now</h3>
+      <p>Your name <span>*</span></p>
+      <input type="text" name="name" placeholder="Your Name" required maxlength="50" class="box">
+      <p>Your email <span>*</span></p>
+      <input type="email" id="name" name="email" placeholder="Your Email" required maxlength="50" class="box">
+      <p>Your password <span>*</span></p>
+      <input type="password" id="password" name="pass" placeholder="Your Password" required maxlength="20" class="box">
+      <p>Confirm password <span>*</span></p>
+      <input type="password" name="c_pass" placeholder="Confirm Your Password" required maxlength="20" class="box">
+      <label for="profile">select profile</label>
+      <select name="profile" id="profile">
+         <option value="student">student</option>
+         <option value="teacher">teacher</option>
+      </select>
+      <p>Upload profile picture</p>
+      <input type="file" accept="image/*" class="box" id="profilepic" name="profilepic">
+      <input type="submit" value="register new" name="submit" class="btn">
+   </form>
+   
+
+</section>
+<footer class="footer">
+
+   &copy; copyright @ AlgAI</span> 
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="../js/script.js"></script>
+
+   
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assessment and Grading</title>
+    <link rel="stylesheet" href="../styles/ag.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body onload="displayLocalStorageData()">
+    <main>
+        <div class="ic">
+            <h3>
+              <i class="fa-solid fa-chalkboard-user"></i> Teachers' Portal 
+              <i class="fa-solid fa-arrow-right"></i>
+            </h3>
+            <div class="profile-info">
+              <img src="bg1.webp" alt="Profile Photo" class="profile-photo profile-pic"/>
+              <div class="profile-details">
+                <h2 class="name">John Doe</h2>
+                <p class="role">Senior Teacher</p>
+              </div>
+            </div>
+          </div>
+        <div class="bor">
+            <div class="str">
+                <a href="teacherinfo.html" class="pd"><i class="fa-solid fa-user"></i> Personal Details</a>
+                <a href="cm.html" class="cm"><i class="fa-solid fa-book-open-reader"></i> Course Management</a>
+                <a href="clm.html" class="ct"><i class="fa-solid fa-chalkboard"></i> Classroom</a>
+                <a href="ag.html" class="ag"><i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading</a>
+                <a href="at.html" class="at"><i class="fa-solid fa-clipboard-user"></i> Attendance Tracking</a>
+                <a href="ar.html" class="ar"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting</a>
+                <a href="teacher_blog_upload.html" class="ar"><i class="fa-solid fa-blog"></i> Add your blog</a>
+                <a href="teachportal.html" class="ar"><i class="fa-solid fa-sticky-note"></i>Update personal details</a>
+              </div>
+            <section id="assessment-grading" class="tab-content active">
+                <h2>Assessment and Grading</h2>
+                <form method="POST" action="/backend/assessment.php">
+                <!-- Add/Edit Assessment Form -->
+                <div class="assessment-form">
+                    <h3>Add/Edit Assessment</h3>
+                    
+                        <div class="form__group">
+                            <input type="text" id="assessment-name" name="assessment_name" class="form__field" placeholder="Assessment Name" required>
+                            <label for="assessment-name" class="form__label">Assessment Name</label>
+                        </div>
+                        <div class="form__group">
+                            <select id="assessment-type" name="assessment_type" class="form__field">
+                                <option value="quiz">Quiz</option>
+                                <option value="midterm">Midterm</option>
+                                <option value="final">Final</option>
+                            </select>
+                            <label for="assessment-type" class="form__label">Type</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="date" id="assessment-date" name="assessment_date" class="form__field" placeholder="Date" required>
+                            <label for="assessment-date" class="form__label">Date</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="number" id="total-marks" name="total_marks" class="form__field" placeholder="Total Marks" required>
+                            <label for="total-marks" class="form__label">Total Marks</label>
+                        </div>
+                        <div class="form__group">
+                            <textarea id="assessment-description" name="assessment_description" class="form__field" placeholder="Description" required></textarea>
+                            <label for="assessment-description" class="form__label">Description</label>
+                        </div>
+                        <!--button type="submit" class="save-button">Save Assessment</button-->
+                    <!--/form-->
+                </div>
+
+                <!-- Student Grades Form -->
+                <div class="student-grades">
+                    <h3>Student Grades</h3>
+                    <!--form method="POST" action="grade.php"-->
+                        <div class="form__group">
+                            <input type="text" id="student-name" name="student_name" class="form__field" placeholder="Student Name" required>
+                            <label for="student-name" class="form__label">Student Name</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="text" id="student-id" name="student_id" class="form__field" placeholder="Student ID" required>
+                            <label for="student-id" class="form__label">Student ID</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="number" id="grade" name="grade" class="form__field" placeholder="Grade" required>
+                            <label for="grade" class="form__label">Grade</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="text" id="feedback" name="feedback" class="form__field" placeholder="Feedback" required>
+                            <label for="feedback" class="form__label">Feedback</label>
+                        </div>
+                        <input type="text" id="email" name="email">
+                        <button type="submit" class="save-grade-button">Save Details</button>
+                    
+                </div>
+            </form>
+            </section>
+        </div>
+    </main>
+    <script>
+        const email = localStorage.getItem('email');
+        function displayLocalStorageData() {
+    // Retrieve data from local storage
+    const storedData = localStorage.getItem('email');
+    
+    // Check if there is any data stored
+    if (storedData) {
+        // Display the data in the textbox
+        document.getElementById('email').value = storedData;
+    } else {
+        // If no data is found, inform the user
+        document.getElementById('email').value = 'No data found in local storage.';
+    }
+    }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isteacher');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+     
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+     </script>
+     <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('email');
+        if (!isLoggedIn) {
+            window.location.href = 'index.html'; 
+        } else {
+            const email = localStorage.getItem('email');
+            fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.profile_pic) {
+                        document.querySelectorAll('.profile-pic').forEach(img => {
+                            img.src = `/backend/${data.profile_pic}`;
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching profile picture:', error);
+                });
+        
+        fetch(`/backend/fetch_name.php?email=${email}`)
+              .then(response => response.text())
+              .then(name => {
+                  document.querySelectorAll('.name').forEach(nameElement => {
+                      nameElement.textContent = name;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching name:', error);
+              });
+     
+          // Fetch the user's role
+          fetch(`/backend/fetch_role.php?email=${email}`)
+              .then(response => response.text())
+              .then(role => {
+                  document.querySelectorAll('.role').forEach(roleElement => {
+                      roleElement.textContent = role;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching role:', error);
+              });
+      }
+     });
+     </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Teachers' Portal</title>
+    <link rel="stylesheet" href="../styles/cms.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body onload="displayLocalStorageData()">
+    <main>
+        <div class="ic">
+            <h3>
+              <i class="fa-solid fa-chalkboard-user"></i> Teachers' Portal 
+              <i class="fa-solid fa-arrow-right"></i>
+            </h3>
+            <div class="profile-info">
+              <img src="bg1.webp" alt="Profile Photo" class="profile-photo profile-pic">
+              <div class="profile-details">
+                <h2 class="name">John Doe</h2>
+                <p class="role">Senior Teacher</p>
+              </div>
+            </div>
+          </div>
+        <div class="bor">
+            <div class="str">
+                <a href="teacherinfo.html" class="pd"><i class="fa-solid fa-user"></i> Personal Details</a>
+                <a href="cm.html" class="cm"><i class="fa-solid fa-book-open-reader"></i> Course Management</a>
+                <a href="clm.html" class="ct"><i class="fa-solid fa-chalkboard"></i> Classroom</a>
+                <a href="ag.html" class="ag"><i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading</a>
+                <a href="at.html" class="at"><i class="fa-solid fa-clipboard-user"></i> Attendance Tracking</a>
+                <a href="ar.html" class="ar"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting</a>
+                <a href="blogs.html" class="ar"><i class="fa-solid fa-blog"></i> Add your blog</a>
+                <a href="teachportal.html" class="ar"><i class="fa-solid fa-sticky-note"></i>Update personal details</a>
+              </div>
+            <main class="content">
+                <section id="course-management" class="tab-content active">
+                    <h2>Subject Management</h2>
+                    
+                    <!-- Search and Filter -->
+                    <div class="search-filter">
+                        <div class="form__group">
+                            <input type="text" id="search-courses" class="form__field" placeholder="Search courses...">
+                            <label for="search-courses" class="form__label">Search Subject...</label>
+                        </div>
+                        <div class="form__group">
+                            <select id="filter-department" class="form__field">
+                                <option value="" disabled selected>Filter by department</option>
+                                <option value="science">Science</option>
+                                <option value="arts">Arts</option>
+                                <option value="commerce">Commerce</option>
+                            </select>
+                            <label for="filter-department" class="form__label">Filter by department</label>
+                        </div>
+                    </div>
+
+                    <!-- Course List -->
+                    <div class="course-list">
+                        <h3>All Subject</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject Name</th>
+                                    <th>Subject Code</th>
+                                    <th>Department</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Introduction to Biology</td>
+                                    <td>BIO101</td>
+                                    <td>Science</td>
+                                    <td>
+                                        <button class="edit-button">Edit</button>
+                                        <button class="delete-button">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- More course rows can go here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Add/Edit Course Form -->
+                    <div class="course-form">
+                        <h3>Add/Edit Subject</h3>
+                        <form action="/backend/submit_course.php" method="post">
+                            <div class="form__group">
+                                <input type="text" id="course-name" name="course-name" class="form__field" required>
+                                <label for="course-name" class="form__label">Subject Name</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="text" id="course-code" name="course-code" class="form__field" required>
+                                <label for="course-code" class="form__label">Subject Code</label>
+                            </div>
+                            <div class="form__group">
+                                <select id="department" name="department" class="form__field">
+                                    <option value="" disabled selected>Select Department</option>
+                                    <option value="science">Science</option>
+                                    <option value="arts">Arts</option>
+                                    <option value="commerce">Commerce</option>
+                                </select>
+                                <label for="department" class="form__label">Department</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="date" id="start-date" name="start-date" class="form__field" required>
+                                <label for="start-date" class="form__label">Start Date</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="date" id="end-date" name="end-date" class="form__field" required>
+                                <label for="end-date" class="form__label">End Date</label>
+                            </div>
+                            <div class="weekdays-picker" style="text-align: center;">
+                                <h1>Select Weekdays</h1>
+                                <div class="days" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                                   <button type="button" class="day" data-day="Monday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Monday</button>
+                                   <button type="button" class="day" data-day="Tuesday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Tuesday</button>
+                                   <button type="button" class="day" data-day="Wednesday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Wednesday</button>
+                                   <button type="button" class="day" data-day="Thursday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Thursday</button>
+                                   <button type="button" class="day" data-day="Friday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Friday</button>
+                                   <button type="button" class="day" data-day="Saturday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Saturday</button>
+                                   <button type="button" class="day" data-day="Sunday" style="background-color: #800080; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s;">Sunday</button>
+                                </div>
+                                <textarea id="selected-days" name="selected-days" readonly style="width: 100%; max-width: 500px; height: 100px; border-radius: 5px; border: 1px solid #ccc; padding: 10px; resize: none;"></textarea>
+                             </div>
+                             
+                             <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                   const days = document.querySelectorAll('.day');
+                                   const selectedDaysTextarea = document.getElementById('selected-days');
+                             
+                                   days.forEach(day => {
+                                      day.addEventListener('click', () => {
+                                         day.classList.toggle('selected');
+                                         if (day.classList.contains('selected')) {
+                                            day.style.backgroundColor = '#0000FF'; // Blue
+                                         } else {
+                                            day.style.backgroundColor = '#800080'; // Purple
+                                         }
+                                         updateSelectedDays();
+                                      });
+                                   });
+                             
+                                   function updateSelectedDays() {
+                                      const selectedDays = Array.from(days)
+                                         .filter(day => day.classList.contains('selected'))
+                                         .map(day => day.dataset.day);
+                                      selectedDaysTextarea.value = selectedDays.join(', ');
+                                   }
+                                });
+                             </script>
+                            <div class="form__group">
+                                <input type="text" id="price" name="price" class="form__field" required>
+                                <label for="price" class="form__label">Price (in $)</label>
+                            </div>
+                            <div class="form__group">
+                                <textarea id="course-description" name="course-description" class="form__field" required></textarea>
+                                <label for="course-description" class="form__label">Subject Description</label>
+                            </div>
+                            <input type="text" id="email" name="email">
+                            <button type="submit" class="save-button">Save Subject</button>
+                        </form>
+                    </div>
+                    <script>
+                        const email = localStorage.getItem('email');
+                        function displayLocalStorageData() {
+                    // Retrieve data from local storage
+                    const storedData = localStorage.getItem('email');
+                    
+                    // Check if there is any data stored
+                    if (storedData) {
+                        // Display the data in the textbox
+                        document.getElementById('email').value = storedData;
+                    } else {
+                        // If no data is found, inform the user
+                        document.getElementById('email').value = 'No data found in local storage.';
+                    }
+                    }
+                    </script>
+                    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'teacherlogin.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isteacher');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'teacherlogin.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+     
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+     </script>
+     <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('email');
+        if (!isLoggedIn) {
+            window.location.href = 'index.html'; 
+        } else {
+            const email = localStorage.getItem('email');
+            fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.profile_pic) {
+                        document.querySelectorAll('.profile-pic').forEach(img => {
+                            img.src = `/backend/${data.profile_pic}`;
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching profile picture:', error);
+                });
+        
+        fetch(`/backend/fetch_name.php?email=${email}`)
+              .then(response => response.text())
+              .then(name => {
+                  document.querySelectorAll('.name').forEach(nameElement => {
+                      nameElement.textContent = name;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching name:', error);
+              });
+     
+          // Fetch the user's role
+          fetch(`/backend/fetch_role.php?email=${email}`)
+              .then(response => response.text())
+              .then(role => {
+                  document.querySelectorAll('.role').forEach(roleElement => {
+                      roleElement.textContent = role;
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching role:', error);
+              });
+      }
+     });
+     </script>
+                </section>
+            </main>
+        </div>
+    </main>
+</body>
+</html>

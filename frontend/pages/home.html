@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Home</title>
+
+   <!-- Font Awesome CDN Link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- Custom CSS File Link -->
+   <link rel="stylesheet" href="../styles/style.css">
+   <style>
+      .profile {
+          padding: 15px;
+          border-bottom: 1px solid #ddd;
+          text-align: center;
+      }
+
+      .profile img {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+      }
+
+      .navbar {
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          flex-grow: 1;
+      }
+
+      .navbar a {
+          display: flex;
+          align-items: center;
+          padding: 15px;
+          text-decoration: none;
+          color: #333;
+          border-bottom: 1px solid #ddd;
+      }
+
+      .navbar a i {
+          margin-right: 10px;
+          font-size: 1.2em;
+      }
+
+      .navbar a span {
+          flex: 1;
+      }
+
+      .navbar a:hover {
+          background-color: #f0f0f0;
+      }
+
+      .navbar a:last-child {
+          border-bottom: none;
+      } 
+        .blogs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .blog-post {
+            border: 1px solid white;
+            border-radius: 3px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-post img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .blog-post h3 {
+            margin: 0 0 10px;
+            font-size: 15px;
+        }
+
+        .blog-post p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .blog-post:hover {
+            box-shadow: 0 6px 12px #2c3e50;
+        }
+
+        .blog-post small {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .read-more-link {
+          color: #007bff; /* Blue color for the link */
+          text-decoration: underline; /* Underline the link */
+          margin-top: 10px; /* Space above the link */
+          display: inline-block;
+      }
+
+      .read-more-link:hover {
+          color: #0056b3; /* Darker blue on hover */
+          text-decoration: none; /* Remove underline on hover */
+      }
+
+      .read-more-container {
+      text-align: right;
+      margin-top: 20px;
+}
+
+.common-read-more-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #410f73;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.common-read-more-btn:hover {
+    background-color: #2c3e50;
+}
+  </style>
+</head>
+<body>
+
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">E-Learning</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="Search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <img src="/backend/uploads/DP/default-profile-pic.jpg" class="image profile-pic" alt="Profile Picture">
+         <h3 class="name"></h3>
+         <p class="role">Student</p>
+         <a href="profile.html" class="btn">View Profile</a>
+         <div class="flex-btn">
+            <a href="/" class="option-btn">Logout</a>
+            <a href="register.html" class="option-btn">Register</a>
+         </div>
+      </div>
+   </section>
+</header>   
+
+<div class="side-bar">
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="../assests/AlgAI logo.png" class="image" alt="Profile Picture">
+      <h1 class="name1">TULI AI E-Tutor</h1>
+      <p class="role1">A Product of AlgAI Technologies</p>
+   </div>
+
+   <nav class="navbar">
+    <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="about.html"><i class="fas fa-question"></i><span>About</span></a>
+    <a href="blogs.html"><i class="fas fa-blog"></i><span>Blogs</span></a>
+    <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+    <a href="tutors.html"><i class="fas fa-chalkboard-user"></i><span>Tutor</span></a>
+    <a href="contact.html"><i class="fas fa-headset"></i><span>Contact us</span></a>
+   </nav>
+</div>
+
+<div class="content-wrapper" id="content-wrapper">
+<section class="home-grid">
+   <h1 class="heading">Student Profile</h1>
+   <div class="box-container">
+      <div class="box">
+         <img src="/backend/uploads/DP/default-profile-pic.jpg" alt="Profile Picture" class="image profile-pic">
+         <h3 class="name"></h3>
+         <p class="email"></p>
+         <p class="institution"></p>
+         <p class="dob"></p>
+         <p class="gender"></p>
+         <!-- Add more fields as required -->
+      </div>
+   </div>
+</section>
+
+<section class="home-grid">
+   <h1 class="heading">Quick Options</h1>
+   <div class="box-container">
+      <div class="box">
+         <h3 class="title">Study Materials</h3>
+         <div class="flex">
+            <a href="#"><i class="fa fa-paperclip"></i><span>Sample Papers</span></a>
+            <a href="#"><i class="fas fa-pen"></i><span>Homeworks</span></a>
+            <a href="#"><i class="fa fa-bars"></i><span>Subject Wise PYQ's</span></a>
+            <a href="#"><i class="fa fa-sticky-note"></i><span>Notes</span></a>
+            <a href="#"><i class="fa fa-book"></i><span>Textbook PDFs</span></a>
+         </div>
+      </div>
+
+      <div class="box">
+         <h3 class="title">Popular Topics</h>
+         <div class="flex">
+            <a href="#"><i class=""></i><span>MATHS</span></a>
+            <a href="#"><i class=""></i><span>PHYSICS</span></a>
+            <a href="#"><i class=""></i><span>CHEMISTRY</span></a>
+            <a href="#"><i class=""></i><span>BIOLOGY</span></a>
+            <a href="#"><i class=""></i><span>SOCIAL SCIENCE</span></a>
+            <a href="#"><i class=""></i><span>ENVIRONMENTAL SCIENCE</span></a>
+         </div>
+      </div>
+
+      <div class="box">
+         <h3 class="title">Become a Tutor</h3>
+         <p class="tutor">Enroll and Empower!</p>
+         <a href="./teacherlogin.html" class="inline-btn">Get Started</a>
+      </div>
+   </div>
+</section>
+
+<section class="Blogs">
+   <h1 class="heading">Blogs</h1>
+     <div class="blog-post">
+         <img src="images/avatar1.png" alt="Avatar">
+         <div>
+             <h3>Understanding Newton's Second Law of Motion: The Heart of Dynamics</h3>
+             <p>In the realm of physics, Sir Isaac Newton's contributions are monumental, with his three laws of motion forming the bedrock of classical mechanics...
+                In the realm of physics, Sir Isaac Newton's contributions are monumental, with his three laws of motion forming the bedrock of classical mechanics...
+             </p>
+             <a href="https://www.physicsclassroom.com/class/newtlaws/Lesson-3/Newton-s-Second-Law.html" class="read-more-link">Read More</a> 
+
+         </div>
+     </div>
+
+     <div class="blog-post">
+         <img src="images/avatar2.png" alt="Avatar">
+         <div>
+             <h3>The Wonders of Quantum Mechanics: A Dive into the Subatomic World</h3>
+             <p>Quantum mechanics is one of the most successful theories in physics, revealing the peculiar behaviors of particles at the smallest scales...
+                Quantum mechanics is one of the most successful theories in physics, revealing the peculiar behaviors of particles at the smallest scales...
+             </p>
+             <a href="https://www.physicsclassroom.com/class/newtlaws/Lesson-3/Newton-s-Second-Law.html" class="read-more-link">Read More</a> 
+         </div>
+     </div>
+
+     <div class="blog-post">
+         <img src="images/avatar3.png" alt="Avatar">
+         <div>
+             <h3>Exploring the Cosmos: Understanding the Expanding Universe</h3>
+             <p>The universe is expanding, and this discovery has led to some of the most intriguing questions about the origins and fate of our cosmos...
+               The universe is expanding, and this discovery has led to some of the most intriguing questions about the origins and fate of our cosmos...
+             </p>
+             <a href="https://www.physicsclassroom.com/class/newtlaws/Lesson-3/Newton-s-Second-Law.html" class="read-more-link">Read More</a> 
+         </div>
+     </div>
+ </div>
+ 
+  <!-- Common button at the bottom of all blogs -->
+  <div class="read-more-container">
+    <a href="blogs.html" class="common-read-more-btn"><h2>More Blogs</h2></a>
+</div>
+
+</section>
+</div>
+
+<footer class="footer">
+   &copy; Copyright @ AlgAI
+</footer>
+
+<!-- Custom JS File Link -->
+<script src="../js/script.js"></script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const isLoggedIn = localStorage.getItem('email');
+      if (!isLoggedIn) {
+          window.location.href = 'index.html'; 
+      } else {
+          const email = localStorage.getItem('email');
+          fetch(`/backend/fetch_profile_data.php?email=${email}`)
+              .then(response => response.json())
+              .then(data => {
+                  document.querySelector('.email').textContent = data.email;
+                  document.querySelector('.institution').textContent = data.institution;
+                  document.querySelector('.dob').textContent = data.dob;
+                  document.querySelector('.gender').textContent = data.gender;
+                  // Populate other fields as necessary
+              })
+              .catch(error => {
+                  console.error('Error fetching profile details:', error);
+              });
+      }
+   });
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const isLoggedIn = localStorage.getItem('email');
+      if (!isLoggedIn) {
+         window.location.href = 'index.html'; 
+      } else {
+          const email = localStorage.getItem('email');
+          fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (data.profile_pic) {
+                      document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error('Error fetching profile picture:', error);
+              });
+              
+   fetch(`/backend/fetch_name.php?email=${email}`)
+         .then(response => response.text())
+         .then(name => {
+             document.querySelectorAll('.name').forEach(nameElement => {
+                 nameElement.textContent = name;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching name:', error);
+         });
+
+     // Fetch the user's role
+     fetch(`/backend/fetch_role.php?email=${email}`)
+         .then(response => response.text())
+         .then(role => {
+             document.querySelectorAll('.role').forEach(roleElement => {
+                 roleElement.textContent = role;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching role:', error);
+         });
+      }
+   });
+</script>
+</body>
+</html>

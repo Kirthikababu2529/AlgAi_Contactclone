@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #333;
+    color: #333;
+} */
+
+.header-container h1 {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+
+.subheading {
+    color: #B2B2B2; 
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.logo-text {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Top Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+}
+
+.search-bar i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+.logo img {
+    margin-right: 10px;
+    height: 50px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+}
+/* Image Slider Section */
+
+.image-slider {
+    margin-top: 70px; /* Space for fixed navbar */
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 60%;
+}
+
+.slide {
+    min-width: 100%;
+    
+    position: relative;
+    transition: 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;;
+}
+
+.get-started-btn {
+    position: absolute;
+    top: 10%;
+    left: 7%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color:black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 12%;
+}
+
+.get-started-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Navigation Arrows */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+    top:30%;
+    
+}
+
+.next {
+    right: 10px;
+    top:30%;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+/* Video Section */
+.video-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+}
+
+.video-container {
+    flex: 1;
+    margin: 10px;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Plans & Pricing Section */
+.plans-pricing {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.pricing-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    flex-basis: 300px;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.plan h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.plan .tagline {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+.plan .type {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.plan .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.plan .billing {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.plan .start-subscription {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.plan .start-subscription:hover {
+    background-color: #333;
+}
+
+.plan .features {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.plan .feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.plan .feature-icon {
+    background-color: green;
+    color: white;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    font-size: 14px;
+}

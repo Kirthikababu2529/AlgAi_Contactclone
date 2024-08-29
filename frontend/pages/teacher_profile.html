@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tutor Profile</title>
+
+   <!-- Font Awesome CDN link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- Custom CSS file link -->
+   <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">E-LEARNING</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <img src="images/st1.jpg" class="image profile-pic" alt="">
+         <h3 class="name">HCD</h3>
+         <p class="role">student</p>
+         <a href="profile.html" class="btn">view profile</a>
+         <div class="flex-btn">
+            <a href="index.html" class="option-btn">log out</a>
+            <a href="register.html" class="option-btn">register</a>
+         </div>
+      </div>
+   </section>
+</header>   
+
+<div class="side-bar">
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="images/st1.jpg" class="image profile-pic" alt="">
+      <h3 class="name">HCD LABS</h3>
+      <p class="role">student</p>
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="home.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>about</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="tutors.html"><i class="fas fa-chalkboard-user"></i><span>Tutor</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
+   </nav>
+</div>
+
+<section class="teacher-profile">
+   <h1 class="heading">Profile Details</h1>
+   <div id="teacher-details" class="details-container">
+       <!-- Teacher details will be populated here -->
+   </div>
+</section>
+
+<footer class="footer">
+   &copy; Copyright @ AlgAI
+</footer>
+
+<!-- Custom JS file link -->
+<script src="../js/script.js"></script>
+
+<script>
+    // Fetch teacher data from the backend and inject it into the HTML
+    fetch('/backend/fetch_teachers.php')
+      .then(response => response.json())
+      .then(data => {
+          const container = document.getElementById('teacher-details');
+          data.forEach(teacher => {
+              const detailsDiv = document.createElement('div');
+              detailsDiv.classList.add('details');
+              detailsDiv.innerHTML = `
+                  <div class="tutor">
+                      <img src="images/pic-1.jpg" alt="">
+                      <h3>${teacher.name || ''}</h3>
+                      <span>${teacher.subjects || ''}</span>
+                  </div>
+                  <div class="flex">
+                      <p>Total students: <span>${teacher.total_students || ''}</span></p>
+                      <p>Total experience: <span>${teacher.experience || ''}</span></p>
+                      <p>Speaks: <span>${teacher.languagesknown || ''}</span></p>
+                      <p>Student ratings: <span>${teacher.ratings || ''}</span></p>
+                  </div>
+              `;
+              container.appendChild(detailsDiv);
+          });
+      })
+      .catch(error => console.error('Error fetching teacher data:', error));
+</script>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'teacherlogin.html'; 
+            }
+        });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+         const isLoggedIn = localStorage.getItem('email');
+         if (!isLoggedIn) {
+            window.location.href = 'teacherlogin.html'; 
+         } else {
+             const email = localStorage.getItem('email');
+             fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+                 .then(response => response.json())
+                 .then(data => {
+                     if (data.profile_pic) {
+                         document.querySelectorAll('.profile-pic').forEach(img => {
+                           img.src = `/backend/${data.profile_pic}`;
+                         });
+                     }
+                 })
+                 .catch(error => {
+                     console.error('Error fetching profile picture:', error);
+                 });
+         }
+      });
+   </script>
+</body>
+</html>

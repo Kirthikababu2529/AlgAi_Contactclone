@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Upload blog</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../styles/style.css">
+
+   
+</head>
+<body>
+   <header class="header">
+      <section class="flex">
+         <a href="home.html" class="logo">E-LEARNING</a>
+   
+         <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+         </div>
+   
+         <div class="profile">
+            <img src="images/st1.jpg" class="image profile-pic" alt="">
+            <h3 class="name">HCD</h3>
+            <p class="role">student</p>
+            <a href="profile.html" class="btn">view profile</a>
+            <div class="flex-btn">
+               <a href="index.html" class="option-btn">log out</a>
+               <a href="register.html" class="option-btn">register</a>
+            </div>
+         </div>
+      </section>
+   </header>   
+
+    <section class="form-container">
+        <form action="/backend/upload_blog.php" method="post" enctype="multipart/form-data">
+            <h3>Upload New Blog Post</h3>
+            <p>Title <span>*</span></p>
+            <input type="text" name="title" placeholder="Enter blog title" required maxlength="255" class="box">
+            <p>Description <span>*</span></p>
+            <textarea name="description" placeholder="Enter blog description" required class="box"></textarea>
+            <p>Upload Image (optional)</p>
+            <input type="file" name="image" accept="image/*" class="box">
+            <input type="submit" value="Upload Blog" class="btn">
+        </form>
+    </section>
+
+    <footer class="footer">
+        &copy; Copyright @ AlgAI
+    </footer>
+</body>
+</html>
+
+<!-- custom js file link  -->
+<script src="../js/script.js"></script>
+
+<script>
+   // Fetch and display blogs
+   fetch('/backend/upload_blog.php')
+      .then(response => response.json())
+      .then(data => {
+         const container = document.getElementById('blogs-container');
+         data.forEach(blog => {
+            const boxDiv = document.createElement('div');
+            boxDiv.classList.add('box');
+            boxDiv.innerHTML = `
+               <div class="blog">
+                  <img src="/backend/uploads/blogs/${blog.image_path || 'default.jpg'}" alt="Blog Image">
+                  <div>
+                     <h3>${blog.title || 'Untitled'}</h3>
+                     <small>Published on: ${blog.created_at || ''}</small>
+                     <p>${blog.description || 'No description available.'}</p>
+                  </div>
+               </div>
+               <button class="inline-btn" onclick="readMore(this, ${blog.id})">Read More</button>
+            `;
+            container.appendChild(boxDiv);
+         });
+      })
+      .catch(error => console.error('Error fetching blogs:', error));
+</script>
+<script src="../js/script.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const isLoggedIn = localStorage.getItem('email');
+      if (!isLoggedIn) {
+         window.location.href = 'index.html'; 
+      } else {
+          const email = localStorage.getItem('email');
+          fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (data.profile_pic) {
+                      document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error('Error fetching profile picture:', error);
+              });
+              
+   fetch(`/backend/fetch_name.php?email=${email}`)
+         .then(response => response.text())
+         .then(name => {
+             document.querySelectorAll('.name').forEach(nameElement => {
+                 nameElement.textContent = name;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching name:', error);
+         });
+
+     // Fetch the user's role
+     fetch(`/backend/fetch_role.php?email=${email}`)
+         .then(response => response.text())
+         .then(role => {
+             document.querySelectorAll('.role').forEach(roleElement => {
+                 roleElement.textContent = role;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching role:', error);
+         });
+      }
+   });
+</script>
+<!-- HTML container to display the blogs -->
+<div id="blogs-container" class="blogs-container">
+   <!-- Blog posts will be appended here dynamically -->
+</div>

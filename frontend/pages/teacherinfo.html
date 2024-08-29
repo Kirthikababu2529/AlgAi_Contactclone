@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teachers' Portal</title>
+  <link rel="stylesheet" href="../styles/teachpor.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .purple-button {
+        background-color: #800080; /* Purple color */
+        color: white; /* White text */
+        border: none; /* Remove border */
+        padding: 10px 20px; /* Padding */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        border-radius: 5px; /* Rounded corners */
+        margin-top: 20px; /* Margin top */
+    }
+
+    .purple-button:hover {
+        background-color: #6a006a; /* Darker purple on hover */
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="ic">
+      <h3>
+        <i class="fa-solid fa-chalkboard-user"></i> Teachers' Portal 
+        <i class="fa-solid fa-arrow-right"></i>
+      </h3>
+      <div class="profile-info">
+        <img src="bg1.webp" alt="Profile Photo" class="profile-photo profile-pic">
+        <div class="profile-details">
+          <h2 class="name">John Doe</h2>
+          <p class="role">Senior Teacher</p>
+        </div>
+      </div>
+    </div>
+    <div class="bor">
+        <div class="str">
+            <a href="teacherinfo.html" class="pd"><i class="fa-solid fa-user"></i> Personal Details</a>
+            <a href="cm.html" class="cm"><i class="fa-solid fa-book-open-reader"></i> Course Management</a>
+            <a href="clm.html" class="ct"><i class="fa-solid fa-chalkboard"></i> Classroom</a>
+            <a href="ag.html" class="ag"><i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading</a>
+            <a href="at.html" class="at"><i class="fa-solid fa-clipboard-user"></i> Attendance Tracking</a>
+            <a href="ar.html" class="ar"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting</a>
+            <a href="teacher_blog_upload.html" class="ar"><i class="fa-solid fa-blog"></i> Add your blog</a>
+            <a href="teachportal.html" class="ar"><i class="fa-solid fa-sticky-note"></i>Update personal details</a>
+          </div>
+      <section id="personal-details" class="tab-content active">
+        <h2>Personal Information</h2>
+        <p><strong>First Name:</strong> <span id="first-name"></span></p>
+        <p><strong>Middle Name:</strong> <span id="middle-name"></span></p>
+        <p><strong>Last Name:</strong> <span id="last-name"></span></p>
+        <!-- <p><strong>Designation:</strong> <span id="designation"></span></p> -->
+        <p><strong>Highest Qualification:</strong> <span id="highest-qualification"></span></p>
+        <p><strong>Expertise:</strong> <span id="expertise"></span></p>
+        <p><strong>Experience:</strong> <span id="experience"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="date-of-birth"></span></p>
+        <p><strong>Languages Known:</strong> <span id="languages-known"></span></p>
+        <p><strong>Gender:</strong> <span id="gender"></span></p>
+        <!-- <p><strong>ID Card:</strong> <span id="id-card"></span></p> -->
+        <p><strong>Telephone 1:</strong> <span id="telephone1"></span></p>
+        <p><strong>Telephone 2:</strong> <span id="telephone2"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+      </section>
+    </div>
+  </main>
+  <script src="../js/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+   const email = localStorage.getItem('email');
+   if (!email) {
+       window.location.href = 'teacherlogin.html'; 
+   } else {
+       fetch(`/backend/fetch_teacher_detail.php?email=${email}`)
+           .then(response => response.json())
+           .then(data => {
+               document.getElementById('first-name').textContent = data.firstname;
+               document.getElementById('middle-name').textContent = data.middlename;
+               document.getElementById('last-name').textContent = data.lastname;
+               document.getElementById('highest-qualification').textContent = data.qualification;
+               document.getElementById('expertise').textContent = data.expertise;
+               document.getElementById('experience').textContent = data.experience;
+               document.getElementById('date-of-birth').textContent = data.dob;
+               document.getElementById('languages-known').textContent = data.languagesknown;
+               document.getElementById('gender').textContent = data.gender;
+              //  document.getElementById('id-card').textContent = data.idcard;
+               document.getElementById('telephone1').textContent = data.telephone1;
+               document.getElementById('telephone2').textContent = data.telephone2;
+               document.getElementById('email').textContent = data.email;
+           })
+           .catch(error => {
+               console.error('Error fetching teacher details:', error);
+           });
+       fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+           .then(response => response.json())
+           .then(data => {
+               if (data.profile_pic) {
+                   document.querySelectorAll('.profile-pic').forEach(img => {
+                       img.src = `/backend/${data.profile_pic}`;
+                   });
+               }
+           })
+           .catch(error => {
+               console.error('Error fetching profile picture:', error);
+           });
+   
+   fetch(`/backend/fetch_name.php?email=${email}`)
+         .then(response => response.text())
+         .then(name => {
+             document.querySelectorAll('.name').forEach(nameElement => {
+                 nameElement.textContent = name;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching name:', error);
+         });
+
+     // Fetch the user's role
+     fetch(`/backend/fetch_role.php?email=${email}`)
+         .then(response => response.text())
+         .then(role => {
+             document.querySelectorAll('.role').forEach(roleElement => {
+                 roleElement.textContent = role;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching role:', error);
+         });
+ }
+});
+</script>
+</body>
+</html>

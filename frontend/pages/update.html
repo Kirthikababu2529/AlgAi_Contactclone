@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>update</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../styles/style.css">
+   <style>
+      .navbar a {
+          display: flex;
+          align-items: center;
+          padding: 15px;
+          text-decoration: none;
+          color: #333;
+          border-bottom: 1px solid #ddd;
+      }
+   </style>
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="home.html" class="logo">E-LEARNING</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <img src="images/st1.jpg" class="image profile-pic" alt="">
+         <h3 class="name">HCD</h3>
+         <p class="role">student</p>
+         <a href="profile.html" class="btn">view profile</a>
+         <div class="flex-btn">
+            <a href="index.html" class="option-btn">log out</a>
+            <a href="register.html" class="option-btn">register</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="images/st1.jpg" class="image profile-pic" alt="">
+      <h3 class="name">HCD</h3>
+      <p class="role">student</p>
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>About</span></a>
+      <a href="blogs.html"><i class="fas fa-blog"></i><span>Blogs</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+      <a href="tutors.html"><i class="fas fa-chalkboard-user"></i><span>Tutor</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>Contact us</span></a>
+   </nav>
+
+</div>
+
+<section class="form-container">
+
+   <form action="/backend/update.php" method="post" enctype="multipart/form-data">
+      <h3>update profile</h3>
+      <p>update name</p>
+      <input type="text" name="name" placeholder="Enter your name" maxlength="50" class="box">
+      <p>email</p>
+      <input type="email" name="email" placeholder="Enter your mail" maxlength="50" class="box">
+      <p>password</p>
+      <input type="password" name="old_pass" placeholder="enter your password" maxlength="20" class="box">
+      <p>new password (optional)</p>
+      <input type="password" name="new_pass" placeholder="enter your old password" maxlength="20" class="box">
+      <p>confirm password (optional)</p>
+      <input type="password" name="c_pass" placeholder="confirm your new password" maxlength="20" class="box">
+      <p>Gender</p>
+      <input type="text" name="gender" placeholder="Enter your gender" maxlength="20" class="box">
+      <p>Date of birth</p>
+      <input type="date" name="dob" placeholder="Enter your DOB" maxlength="20" class="box">
+      <p>School/College Name</p>
+      <input type="text" name="institute" placeholder="Enter your Institute name" maxlength="20" class="box">
+      <p>City</p>
+      <input type="text" name="city" placeholder="Enter your city" maxlength="20" class="box">
+      <p>District</p>
+      <input type="text" name="district" placeholder="Enter your district" maxlength="20" class="box">
+      <p>State</p>
+      <input type="text" name="state" placeholder="Enter your state" maxlength="20" class="box">
+      <p>Update profile picture</p>
+      <input type="file" accept="image/*" class="box" id="profilepic" name="profilepic">
+      <input type="submit" value="update profile" name="submit" class="btn">
+   </form>
+
+</section>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const isLoggedIn = localStorage.getItem('email');
+      if (!isLoggedIn) {
+         window.location.href = 'index.html'; 
+      } else {
+          const email = localStorage.getItem('email');
+          fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (data.profile_pic) {
+                      document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error('Error fetching profile picture:', error);
+              });
+              
+   fetch(`/backend/fetch_name.php?email=${email}`)
+         .then(response => response.text())
+         .then(name => {
+             document.querySelectorAll('.name').forEach(nameElement => {
+                 nameElement.textContent = name;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching name:', error);
+         });
+
+     // Fetch the user's role
+     fetch(`/backend/fetch_role.php?email=${email}`)
+         .then(response => response.text())
+         .then(role => {
+             document.querySelectorAll('.role').forEach(roleElement => {
+                 roleElement.textContent = role;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching role:', error);
+         });
+      }
+   });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+   &copy; copyright @ AlgAI <span></span> 
+
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'index.html'; 
+            }
+        });
+    </script>
+<!-- custom js file link  -->
+<script src="../js/script.js"></script>
+
+   
+</body>
+</html>

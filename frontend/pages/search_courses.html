@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+
+    <!-- Font Awesome CDN link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+    <!-- Custom CSS file link  -->
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+<header class="header">
+    <section class="flex">
+        <a href="home.html" class="logo"> </a>
+
+        <form action="search_courses.html" method="get" class="search-form">
+            <input type="text" name="search_box" value="" required placeholder="Search courses..." maxlength="100">
+            <button type="submit" class="fas fa-search"></button>
+        </form>
+        
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+        </div>
+
+        <div class="profile">
+            <img src="images/st1.jpg" class="image" alt="">
+            <h3 class="name">HCD</h3>
+            <p class="role">Student</p>
+            <a href="profile.html" class="btn">View Profile</a>
+            <div class="flex-btn">
+                <a href="index.html" class="option-btn">Log Out</a>
+                <a href="register.html" class="option-btn">Register</a>
+            </div>
+        </div>
+    </section>
+</header>
+
+<div class="side-bar">
+    <div id="close-btn">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <div class="profile">
+        <img src="images/st1.jpg" class="image" alt="">
+        <h3 class="name">HCD</h3>
+        <p class="role">Student</p>
+        <a href="profile.html" class="btn">View Profile</a>
+    </div>
+    <nav class="navbar">
+        <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="about.html"><i class="fas fa-question"></i><span>About</span></a>
+        <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+        <a href="tutors.html"><i class="fas fa-chalkboard-user"></i><span>Tutor</span></a>
+        <a href="contact.html"><i class="fas fa-headset"></i><span>Contact Us</span></a>
+    </nav>
+</div>
+
+<section class="courses">
+    <h1 class="heading">Search Results</h1>
+
+    <div class="box-container" id="courses-container">
+        <!-- Dynamic content will be inserted here -->
+    </div>
+</section>
+
+
+
+<!-- Custom JS file link  -->
+<script src="../js/script.js"></script>
+
+<script>
+    // Function to create a course box
+function createCourseBox(subjectName, price, weekdays, tutorName) {
+    const box = document.createElement('div');
+    box.classList.add('box');
+    
+    const tutor = document.createElement('div');
+    tutor.classList.add('tutor');
+    const tutorImg = document.createElement('img');
+    tutorImg.src = 'images/pic-1.jpg';
+    tutorImg.alt = '';
+    const info = document.createElement('div');
+    info.classList.add('info');
+    const h3 = document.createElement('h3');
+    h3.textContent = tutorName;  // Tutor name
+    const span = document.createElement('span');
+    span.textContent = '';  // Empty span
+    info.appendChild(h3);
+    info.appendChild(span);
+    tutor.appendChild(tutorImg);
+    tutor.appendChild(info);
+    
+    const thumb = document.createElement('div');
+    thumb.classList.add('thumb');
+    const thumbImg = document.createElement('img');
+    thumbImg.src = 'images/english.jpg';
+    thumbImg.alt = '';
+    const thumbSpan = document.createElement('span');
+    thumbSpan.textContent = '';  // Empty span
+    thumb.appendChild(thumbImg);
+    thumb.appendChild(thumbSpan);
+    
+    const title = document.createElement('h3');
+    title.classList.add('title');
+    title.textContent = subjectName;
+
+    const priceTag = document.createElement('p');
+    priceTag.textContent = `Price: ${price}`;
+
+    const weekdaysTag = document.createElement('p');
+    weekdaysTag.textContent = `Weekdays: ${weekdays}`;
+    
+    const link = document.createElement('a');
+    link.href = 'viewtutors.html';
+    link.classList.add('inline-btn');
+    link.textContent = 'View Tutors';
+
+    box.appendChild(tutor);
+    box.appendChild(thumb);
+    box.appendChild(title);
+    box.appendChild(priceTag);
+    box.appendChild(weekdaysTag);
+    box.appendChild(link);
+    
+    return box;
+}
+
+// Function to fetch and display search results
+function fetchSearchResults() {
+    const searchQuery = new URLSearchParams(window.location.search).get('search_box');
+
+    if (searchQuery) {
+        fetch(`/backend/search_courses.php?search_box=${encodeURIComponent(searchQuery)}`)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('courses-container');
+                container.innerHTML = ''; // Clear previous results
+
+                if (data.length === 0) {
+                    const noResults = document.createElement('p');
+                    noResults.textContent = 'No courses found.';
+                    container.appendChild(noResults);
+                } else {
+                    data.forEach(course => {
+                        const courseBox = createCourseBox(course.subjectname, course.price, course.weekdays, course.tutor_name);
+                        container.appendChild(courseBox);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching search results:', error));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchSearchResults();
+    const isLoggedIn = localStorage.getItem('email');
+
+    // If the user is not logged in, redirect them to the login page
+    if (!isLoggedIn) {
+        window.location.href = 'index.html'; 
+    }
+});
+
+</script>
+<footer class="footer">
+    &copy; Copyright @ AlgAI <span></span> 
+</footer>
+</body>
+</html>

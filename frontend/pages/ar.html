@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teachers' Portal</title>
+    <link rel="stylesheet" href="../styles/ats.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+</head>
+<body onload="displayLocalStorageData()">
+<main>
+    <div class="ic">
+        <h3>
+          <i class="fa-solid fa-chalkboard-user"></i> Teachers' Portal 
+          <i class="fa-solid fa-arrow-right"></i>
+        </h3>
+        <div class="profile-info">
+          <img src="bg1.webp" alt="Profile Photo" class="profile-photo profile-pic">
+          <div class="profile-details">
+            <h2 class="name">John Doe</h2>
+            <p class="role">Senior Teacher</p>
+          </div>
+        </div>
+      </div>
+    <div class="bor">
+        <div class="str">
+            <a href="teacherinfo.html" class="pd"><i class="fa-solid fa-user"></i> Personal Details</a>
+            <a href="cm.html" class="cm"><i class="fa-solid fa-book-open-reader"></i> Course Management</a>
+            <a href="clm.html" class="ct"><i class="fa-solid fa-chalkboard"></i> Classroom</a>
+            <a href="ag.html" class="ag"><i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading</a>
+            <a href="at.html" class="at"><i class="fa-solid fa-clipboard-user"></i> Attendance Tracking</a>
+            <a href="ar.html" class="ar"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting</a>
+            <a href="teacher_blog_upload.html" class="ar"><i class="fa-solid fa-blog"></i> Add your blog</a>
+            <a href="teachportal.html" class="ar"><i class="fa-solid fa-sticky-note"></i>Update personal details</a>
+          </div>
+        <main class="content">
+            <section id="analytics-reporting" class="tab-content active">
+                <h2>Analytics and Reporting</h2>
+                
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                    <div class="form__group">
+                        <input type="text" id="search-reports" class="form__field" placeholder="Search reports...">
+                        <label for="search-reports" class="form__label">Search reports...</label>
+                    </div>
+                </div>
+
+                <!-- Student Statistics -->
+                <div class="student-statistics">
+                    <h3>Student Statistics</h3>
+                    <div class="stat-item">
+                        <div class="stat-label">Number of Students Passed</div>
+                        <div class="stat-value" id="students-passed">120</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Number of Ongoing Students</div>
+                        <div class="stat-value" id="students-ongoing">150</div>
+                    </div>
+                </div>
+
+                <!-- Add/Edit Report Form -->
+                <div class="report-form">
+                    <h3>Add/Edit Report</h3>
+                    <form id="report-form" method="POST" action="/backend/analytics.php">
+                        <div class="form__group">
+                            <input type="text" id="report-name" name="report_name" class="form__field" required>
+                            <label for="report-name" class="form__label">Report Name</label>
+                        </div>
+                        <div class="form__group">
+                            <select id="report-type" name="report_type" class="form__field">
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="passed">Passed</option>
+                                <option value="ongoing">Ongoing</option>
+                            </select>
+                            <label for="report-type" class="form__label">Report Type</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="date" id="creation-date" name="creation_date" class="form__field" required>
+                            <label for="creation-date" class="form__label">Creation Date</label>
+                        </div>
+                        <div class="form__group">
+                            <textarea id="report-description" name="report_description" class="form__field" required></textarea>
+                            <label for="report-description" class="form__label">Report Description</label>
+                        </div>
+                        <input type="text" id="email" name="email" hidden>
+                        <button type="submit" class="save-button">Save Report</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</main>
+<!--script>
+    function getEmailFromLocalStorage() {
+       return localStorage.getItem('email');
+    }
+    email=getEmailFromLocalStorage();
+    console.log(email);
+    //console.log(stringify(email));
+ 
+    function verifyEmail() {
+       const email = "blessygrace001@gmail.com";
+       if (email) {
+          // Make an AJAX request to the PHP script to verify the email
+          fetch('verify_email.php', {
+             method: 'POST',
+             headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+             },
+             body: 'email=' + encodeURIComponent(email)
+          })
+          .then(response => response.text())
+          .then(data => {
+             if (data.trim() !== 'success') {
+                window.location.href = 'login.html'; // Redirect to login page if email verification fails
+             }
+          })
+          .catch(error => {
+             console.error('Error:', error);
+             window.location.href = 'login.html'; // Redirect to login page on error
+          });
+       } else {
+          window.location.href = 'login.html'; // Redirect to login page if email is not found in local storage
+       }
+    }
+ 
+    document.addEventListener('DOMContentLoaded', verifyEmail);
+ </script-->
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('email');
+ 
+        // If the user is not logged in, redirect them to the login page
+        if (!isLoggedIn) {
+            window.location.href = 'index.html'; 
+        }
+    });
+ </script>
+ <script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const isLoggedIn = localStorage.getItem('email');
+    if (!isLoggedIn) {
+        window.location.href = 'index.html'; 
+    } else {
+        const email = localStorage.getItem('email');
+        fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.profile_pic) {
+                    document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching profile picture:', error);
+            });
+    
+    fetch(`/backend/fetch_name.php?email=${email}`)
+          .then(response => response.text())
+          .then(name => {
+              document.querySelectorAll('.name').forEach(nameElement => {
+                  nameElement.textContent = name;
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching name:', error);
+          });
+ 
+      // Fetch the user's role
+      fetch(`/backend/fetch_role.php?email=${email}`)
+          .then(response => response.text())
+          .then(role => {
+              document.querySelectorAll('.role').forEach(roleElement => {
+                  roleElement.textContent = role;
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching role:', error);
+          });
+  }
+ });
+ </script>
+ <script>
+    const email = localStorage.getItem('email');
+    function displayLocalStorageData() {
+// Retrieve data from local storage
+const storedData = localStorage.getItem('email');
+
+// Check if there is any data stored
+if (storedData) {
+    // Display the data in the textbox
+    document.getElementById('email').value = storedData;
+} else {
+    // If no data is found, inform the user
+    document.getElementById('email').value = 'No data found in local storage.';
+}
+}
+</script>
+<!--script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('email');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'login.html'; 
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isteacher');
+
+            // If the user is not logged in, redirect them to the login page
+            if (!isLoggedIn) {
+                window.location.href = 'login.html'; 
+            }
+        });
+    </script-->
+<script src="../js/script.js"></script>
+</body>
+</html>

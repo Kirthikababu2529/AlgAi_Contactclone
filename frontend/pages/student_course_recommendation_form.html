@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Recommendation Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: left; /* Ensure text aligns to the left by default */
+        }
+
+        /* .form-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        } */
+
+        /* h1, h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px; 
+        }
+
+        h1 {
+        font-size: 20px;
+        } */
+
+
+        /* .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            text-align: left;
+            
+        }
+
+        .form-group select {
+            background-color: #fff;
+        }
+
+        .form-group textarea {
+            resize: none;
+        } */
+
+        .form-group input[type="submit"] {
+            background-color: #410f73;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 20%;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <section class="flex">
+            <a href="home.html" class="logo">E-Learning</a>
+            <a href="home.html" class="logo"></a>
+
+            <form action="search.html" method="post" class="search-form">
+                <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+                <button type="submit" class="fas fa-search"></button>
+            </form>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+                <div id="user-btn" class="fas fa-user"></div>
+                <div id="toggle-btn" class="fas fa-sun"></div>
+            </div>
+
+            <div class="profile">
+                <img src="/backend/uploads/DP/images.jpeg" class="image" alt="">
+                <label type="text" id="email" name="email">
+                    <p class="role">Student</p>
+                    <a href="profile.html" class="btn">View profile</a>
+                    <div class="flex-btn">
+                        <a href="/" class="option-btn">Logout</a>
+                        <a href="register.html" class="option-btn">Register</a>
+                    </div>
+            </div>
+
+        </section>
+    </header>
+    <div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+    <img src="images/st1.jpg" class="image profile-pic" alt="">
+    <h3 class="name">HCD</h3>
+    <p class="role">Student</p>
+    <a href="profile.html" class="btn">View Profile</a>
+ </div>
+
+   <nav class="navbar">
+      <a href="home.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>About</span></a>
+      <a href="blogs.html"><i class="fas fa-blog"></i><span>Blogs</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+      <a href="tutors.html"><i class="fas fa-chalkboard-user"></i><span>Tutor</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>Contact us</span></a>
+   </nav>
+
+</div>
+
+    
+
+    <section class="form-container1">
+        <form action="/backend/student_course_recommendation_form.php" method="POST">
+            <header>
+                <h1>Student Course Recommendation Form</h1>
+            </header>
+
+            <!-- Personal Interests and Hobbies -->
+            <h2>Personal Interests and Hobbies</h2>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <textarea id="Name" name="Name" rows="1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email address">e-mail address</label>
+                <textarea id="email address" name="email address" rows="1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="grade">Which grade are you currently in?</label>
+                <input id="grade" name="grade" type="number" min="1" max="12" required>
+            </div>
+            <div class="form-group">
+                <label for="enjoy_subjects">What subjects do you enjoy the most at school?</label>
+                <textarea id="enjoy_subjects" name="enjoy_subjects" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="hobbies_activities">Which hobbies or activities do you enjoy outside of school?</label>
+                <textarea id="hobbies_activities" name="hobbies_activities" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="clubs_groups">Are you part of any clubs, sports teams, or other groups?</label>
+                <textarea id="clubs_groups" name="clubs_groups" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="interest_activities">What activities or topics interest you the most?</label>
+                <textarea id="interest_activities" name="interest_activities" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="learning_enjoyment">What do you enjoy most about learning new things?</label>
+                <textarea id="learning_enjoyment" name="learning_enjoyment" rows="3" required></textarea>
+            </div>
+
+            <!-- Skills and Strengths -->
+            <h2>Skills and Strengths</h2>
+            <div class="form-group">
+                <label for="confident_subjects">What subjects do you feel most confident in at school?</label>
+                <textarea id="confident_subjects" name="confident_subjects" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills_strengths">What are some skills you think you’re good at?</label>
+                <textarea id="skills_strengths" name="skills_strengths" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="improve_skills">Are there any skills you want to improve?</label>
+                <textarea id="improve_skills" name="improve_skills" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="new_skills">Are there any new skills you would like to learn?</label>
+                <textarea id="new_skills" name="new_skills" rows="3" required></textarea>
+            </div>
+
+            <!-- Academic and Career Goals -->
+            <h2>Academic and Career Goals</h2>
+            <div class="form-group">
+                <label for="academic_goals">What are your academic goals for the next few years?</label>
+                <textarea id="academic_goals" name="academic_goals" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="career_goals">Do you have any specific career goals in mind?</label>
+                <textarea id="career_goals" name="career_goals" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="career_interest">If you’re unsure about your career, which fields interest you?</label>
+                <textarea id="career_interest" name="career_interest" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="aspire">What do you aspire to become in the future?</label>
+                <textarea id="aspire" name="aspire" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="career_guidance">Do you need any help with career counseling or guidance?</label>
+                <textarea id="career_guidance" name="career_guidance" rows="3" required></textarea>
+            </div>
+
+            <!-- Course Preferences -->
+            <h2>Course Preferences</h2>
+            <div class="form-group">
+                <label for="preferred_courses">What type of courses are you interested in?</label>
+                <textarea id="preferred_courses" name="preferred_courses" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="learning_format">Which format do you prefer for learning (online, offline, blended)?</label>
+                <textarea id="learning_format" name="learning_format" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="challenging_subjects">Are there any subjects you find particularly challenging?</label>
+                <textarea id="challenging_subjects" name="challenging_subjects" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="support">What type of support do you need to succeed in your studies?</label>
+                <textarea id="support" name="support" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="expectations">What are your expectations from the courses you want to pursue?</label>
+                <textarea id="expectations" name="expectations" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </section>
+    <footer class="footer">
+        &copy; Copyright @ AlgAI <span></span> 
+     </footer>
+ <script src="../js/script.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const isLoggedIn = localStorage.getItem('email');
+      if (!isLoggedIn) {
+         window.location.href = 'index.html'; 
+      } else {
+          const email = localStorage.getItem('email');
+          fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (data.profile_pic) {
+                      document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error('Error fetching profile picture:', error);
+              });
+              
+   fetch(`/backend/fetch_name.php?email=${email}`)
+         .then(response => response.text())
+         .then(name => {
+             document.querySelectorAll('.name').forEach(nameElement => {
+                 nameElement.textContent = name;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching name:', error);
+         });
+
+     // Fetch the user's role
+     fetch(`/backend/fetch_role.php?email=${email}`)
+         .then(response => response.text())
+         .then(role => {
+             document.querySelectorAll('.role').forEach(roleElement => {
+                 roleElement.textContent = role;
+             });
+         })
+         .catch(error => {
+             console.error('Error fetching role:', error);
+         });
+      }
+   });
+</script>
+</body>
+
+</html>

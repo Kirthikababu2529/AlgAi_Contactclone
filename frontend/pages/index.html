@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider Page</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="../assests/logo2.jpg" alt="Your Logo">
+            </div>
+            <div class="search-bar">
+                <form action="./search_anything.html" method="get" class="search-form">
+                    <input type="text" name="search_box" value="" required placeholder="Search for anything" maxlength="100">
+                    <!-- <button type="submit" class="fas fa-search"></button> -->
+                    <i class="fas fa-search"></i>
+                </form>
+            
+                
+            </div>
+            <div class="nav-links">
+                <a href="#">FAQ</a>
+                <a href="#">Plans & Pricing</a>
+                <a href="./teachportal.html">Become a Tutor</a>
+                <a href="./register.html">Register</a>
+                <a href="./student_login.html">Login</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Image Slider Section -->
+    
+    <section class="image-slider">
+        <div class="slider">
+            <div class="slides">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="../assests/image1.jpg" alt="Image 1">
+                    <a href="./register.html" class="get-started-btn">Get Started</a>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="../assests/image2.jpg" alt="Image 2">
+                </div>
+                
+            </div>
+            <!-- Navigation Arrows -->
+            <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-chevron-left"></i></a>
+            <a class="next" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+    
+
+    <!-- JavaScript for Image Slider -->
+    <script>
+        let slideIndex = 0;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n >= slides.length) {
+                slideIndex = 0;
+            }
+            if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+            slides.forEach((slide, index) => {
+                slide.style.transform = `translateX(${-(slideIndex * 100)}%)`;
+            });
+        }
+    </script>
+    <div class="header-container">
+        <h1>All the skills you need in one place.</h1>
+    </div>
+    
+    <h3 class="subheading">From learning, Tuli support mentoring and interactive learning experiences to all students.</h3>
+    <!-- Image Slider Section -->
+    <b><center><h2>Tuli Ads</h2></center></b>
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <video controls>
+                <source src="../assests/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-container">
+            <video controls>
+                <source src="../assests/video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <b><center><h2>Plans & Pricing</h2></center></b>
+    
+    <center><h4>Begin with a Plan to Utilize Our Tuli Services</h4></center>
+    <!-- Plans & Pricing Section -->
+    <section class="plans-pricing">
+        <div class="pricing-container">
+            <!-- Plan 1 -->
+            <div class="plan">
+                <h2>Custom Plan</h2>
+                <p class="tagline">For you</p>
+                <p class="type">Individual</p>
+                <p class="price">Starting at ₹850 per month</p>
+                <p class="billing">Billed monthly or annually. Cancel anytime.</p>
+                <a href="subscribe.html" class="start-subscription">Start Subscription <i class="fas fa-arrow-right"></i></a>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Access to 11,000+ top courses</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Certification prep</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Goal-focused recommendations</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>AI-powered coding exercises</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="plan">
+                <h2>Standard Plan</h2>
+                <p class="tagline">For teams</p>
+                <p class="type">Group</p>
+                <p class="price">Starting at ₹1,500 per month</p>
+                <p class="billing">Billed monthly or annually. Cancel anytime.</p>
+                <a href="subscribe.html" class="start-subscription">Start Subscription <i class="fas fa-arrow-right"></i></a>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Access to 15,000+ top courses</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Certification prep</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Goal-focused recommendations</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>AI-powered coding exercises</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="plan">
+                <h2>Premium Plan</h2>
+                <p class="tagline">For enterprises</p>
+                <p class="type">Corporate</p>
+                <p class="price">Starting at ₹3,000 per month</p>
+                <p class="billing">Billed monthly or annually. Cancel anytime.</p>
+                <a href="subscribe.html" class="start-subscription">Start Subscription <i class="fas fa-arrow-right"></i></a>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Access to 20,000+ top courses</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Certification prep</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>Goal-focused recommendations</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-check"></i></div>
+                        <p>AI-powered coding exercises</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+
+            <p>&copy; copyright @ AlgAI </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Image Slider -->
+    
+</body>
+
+</html>

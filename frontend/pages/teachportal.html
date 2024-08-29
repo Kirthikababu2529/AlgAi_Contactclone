@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>login</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../styles/style.css">
+   <link rel="stylesheet" href="../styles/styles.css">
+   <link rel="stylesheet" href="../styles/teachportal.css">
+
+</head>
+<body style="padding-left: 0px;">
+
+<header class="header">
+   
+   <section class="flex">
+
+      <div class="logo-container">
+         <div class="logo">
+             <img src="../assests/logo2.jpg" alt="Logo">
+         </div>
+         <a href="./teacherinfo.html" class="logo-text" style="padding-left: 13px;">E-LEARNING</a>
+     </div>
+
+      <!-- <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form> -->
+
+      <div class="icons">
+         <div id="search-btn" class="fas fa-search"></div>
+         <!-- <div id="user-btn" class="fas fa-user"></div> -->
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <!-- <div class="profile">
+         <div class="flex-btn">
+            <a href="teacherlogin.html" class="option-btn">Teacher's Login</a>
+             <a href="index.html" class="option-btn">Student's Login</a> 
+         </div>
+         <a href="register.html" class="btn">Register</a>
+         
+      </div> -->
+
+   </section>
+
+</header>   
+<!-- <div class="side-bar"></div> -->
+
+
+<section class="form-container-teachportal">
+
+   <form action="/backend/pd.php" method="post" enctype="multipart/form-data">
+      <div class="buttons-for-teacherportal-form">
+         <button>
+           <a href="./teacherinfo.html">
+             <i class="fa-solid fa-user"></i> Personal Details
+           </a>
+         </button>
+         <button>
+           <a href="./cm.html">
+             <i class="fa-solid fa-book-open-reader"></i> Course Management
+           </a>
+         </button>
+         <button>
+           <a href="./ag.html">
+             <i class="fa-solid fa-arrows-to-eye"></i> Assessment and Grading
+           </a>
+         </button>
+         <button>
+           <a href="./clm.html">
+             <i class="fa-solid fa-chalkboard"></i> Classroom
+           </a>
+         </button>
+         <button>
+           <a href="./at.html">
+             <i class="fa-solid fa-clipboard-user"></i> Attendance Tracking
+           </a>
+         </button>
+         <button>
+           <a href="./ar.html">
+             <i class="fa-solid fa-chart-simple"></i> Analytics and Reporting
+           </a>
+         </button>
+         <button>
+            <a href="teacher_blog_upload.html"><i class="fa-solid fa-blog"></i> Add your blog</a>
+         </button>
+         <button>
+           <a href="./teachportal.html">
+             <i class="fa-solid fa-sticky-note"></i> Update Personal Details
+           </a>
+         </button>
+       </div>       
+      <br>
+      
+         <h2>Personal Information</h2>
+      <br>
+      <div class="spacer"></div>
+      <br>
+      <div class="form__group">
+         <label class="custom-file-upload form__label" for="profile_photo">
+            <input type="file" id="profile_photo" name="profile_photo" class="form__field" accept="image/*" required>
+            Upload Profile Image
+          </label>
+          <div id="profile-image-preview" class="image-preview"></div>   
+      </div> 
+       
+      
+      <br>
+      <br>  
+
+
+      <div class="form__group">
+         <label for="first-name" class="form__label">First Name:</label>
+      <input type="text" id="first-name" name="first_name" class="form__field" name="first_name" required>
+      </div>        
+
+      <br><br>
+
+      <div class="form__group">
+         <label for="middle-name" class="form__label">Middle Name:</label>
+      <input type="text" id="middle-name" class="form__field" name="middle_name">
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <label for="lastname" class="form__label">Last Name:</label>
+      <input type="text" id="last-name" class="form__field" name="last_name"  required>
+      </div>
+      
+      <br><br>
+
+      <!-- <div class="form__group">
+         <label for="designation" class="form__label">Designation:</label>
+         <input type="text" id="designation" class="form__field" name="designation" required>
+      </div> -->
+      
+      <!-- <br><br> -->
+
+      <div class="form__group">
+         <label for="highest-qualification" class="form__label">Highest Qualification:</label>
+      <input type="text" id="highest-qualification" class="form__field" name="highest_qualification" required>
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <label for="expertise" class="form__label">Expertise:</label>
+         <!-- i have used the textarea tag for this you (karthi) had used the input tag kindly do check -->
+      <textarea id="expertise" class="form__field" name="expertise" rows="4" required></textarea>
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <label for="experience" class="form__label">Experience (Years):</label>
+         <!-- here the type should be number not text -->
+      <input type="number" id="experience" class="form__field" name="experience" required>
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <label for="date-of-birth" class="form__label">Date of Birth:</label>
+      <input type="date" id="date-of-birth" class="form__field" name="date_of_birth" required>
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <label for="languages-known" class="form__label">Languages Known:</label>
+      <input type="text" id="languages-known" class="form__field" name="languages_known"  required>
+      </div>
+      
+      <br><br>
+
+      <!-- this section is completely different so kindly do review it -->
+      <div class="form__group">
+         <label>Gender: &ensp;</label>
+         <input type="radio" id="male" name="gender" value="male" required>
+      
+      
+         <label for="male">Male</label>
+
+         <input type="radio" id="female" name="gender" value="female">
+         <label for="female">Female</label>
+
+         <input type="radio" id="other" name="gender" value="other">
+         <label for="other">Other</label>
+      </div>
+
+      <br><br>
+
+      <!-- i made the input file type to be "file" but the version you made has type "text" -->
+      <div class="form__group">
+         <label class="custom-file-upload form__label" for="id-card">
+            <input type="file" id="id-card" class="form__label" name="id-card" accept="image/*">
+            Upload ID Card
+         </label>
+         <div id="id-card-preview" class="image-preview"></div>
+      </div>
+      
+      <br><br>
+      <h2>Personal Information</h2>
+      <br>
+      <div class="spacer"></div>
+      <br><br>
+      <!-- Phone Number Field with Icon -->
+      <div class="form__group">
+         <div class="input-container">
+            <label for="telephone1">Phone 1:</label>
+            <input type="tel" id="telephone1" name="telephone1" required oninput="checkPhoneNumber()">
+            <i id="phone-icon" class="fas validation-icon"></i>
+         </div>
+      </div>
+      
+      <br>
+
+      <!-- Phone Number Field with Icon -->
+      <div class="form__group">
+         <div class="input-container">
+            <label for="telephone2" class="form__label">Phone 2:</label>
+            <input type="tel" id="telephone2" class="form__field" name="telephone2">
+            <i id="phone-icon" class="fas validation-icon"></i>
+         </div>
+      </div>
+      
+      <br>
+
+      <!-- Email and Password  -->
+      <div class="form__group">
+         <label for="email" class="form__label">Email Address:</label>
+         <input type="email" id="email" class="form__field" name="email" required>
+      </div>
+      
+      <br><br>
+
+      <!-- new and confirm password section are completely different because i have added js for password match confirmation  -->
+      <div class="form__group">
+         <div class="input-container">
+            <label for="new-password">New Password:</label>
+            <input type="password" id="pass" name="pass" oninput="checkPasswords()">
+            <i id="new-pass-icon" class="fas validation-icon"></i>
+         </div>
+      </div>
+      
+      <br><br>
+
+      <div class="form__group">
+         <div class="input-container">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="c_pass" name="c_pass" oninput="checkPasswords()">
+            <i id="confirm-pass-icon" class="fas validation-icon"></i>
+         </div>
+      </div>
+      
+      <br><br>
+      <input type="submit" value="submit" name="submit" class="btn purple-button">
+      </div>
+   </form>
+
+</section>
+
+<footer class="footer">
+   &copy; copyright @ AlgAI <span></span> 
+</footer>
+  <script src="../js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const isLoggedIn = localStorage.getItem('email');
+ 
+        // If the user is not logged in, redirect them to the login page
+        if (!isLoggedIn) {
+            window.location.href = 'teacherlogin.html'; 
+        }
+    });
+ </script>
+ <script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const isLoggedIn = localStorage.getItem('email');
+    if (!isLoggedIn) {
+        window.location.href = 'index.html'; 
+    } else {
+        const email = localStorage.getItem('email');
+        fetch(`/backend/fetch_profile_pic.php?email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.profile_pic) {
+                    document.querySelectorAll('.profile-pic').forEach(img => {
+                        img.src = `/backend/${data.profile_pic}`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching profile picture:', error);
+            });
+    
+    fetch(`/backend/fetch_name.php?email=${email}`)
+          .then(response => response.text())
+          .then(name => {
+              document.querySelectorAll('.name').forEach(nameElement => {
+                  nameElement.textContent = name;
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching name:', error);
+          });
+ 
+      // Fetch the user's role
+      fetch(`/backend/fetch_role.php?email=${email}`)
+          .then(response => response.text())
+          .then(role => {
+              document.querySelectorAll('.role').forEach(roleElement => {
+                  roleElement.textContent = role;
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching role:', error);
+          });
+  }
+ });
+ </script>
+ <script>
+   
+
+  document.addEventListener('DOMContentLoaded', function() {
+   // Profile Image Preview
+   const profileImageInput = document.getElementById('profile_photo');
+   const profileImagePreview = document.getElementById('profile-image-preview');
+   
+   profileImageInput.addEventListener('change', function() {
+       // Clear previous preview
+       profileImagePreview.innerHTML = '';
+       
+       const file = profileImageInput.files[0];
+       if (file) {
+           const reader = new FileReader();
+           reader.onload = function(e) {
+               const img = document.createElement('img');
+               img.src = e.target.result;
+               img.alt = 'Profile Image Preview';
+               profileImagePreview.appendChild(img);
+           };
+           reader.readAsDataURL(file);
+       }
+   });
+
+   // ID Card Preview
+   const idCardInput = document.getElementById('id-card');
+   const idCardPreview = document.getElementById('id-card-preview');
+   
+   idCardInput.addEventListener('change', function() {
+       // Clear previous preview
+       idCardPreview.innerHTML = '';
+       
+       const file = idCardInput.files[0];
+       if (file) {
+           const reader = new FileReader();
+           reader.onload = function(e) {
+               const img = document.createElement('img');
+               img.src = e.target.result;
+               img.alt = 'ID Card Preview';
+               idCardPreview.appendChild(img);
+           };
+           reader.readAsDataURL(file);
+       }
+   });
+});
+  // Function to check passwords and show validation icons
+  function checkPasswords() {
+     const newPassword = document.getElementById('new-password').value;
+     const confirmPassword = document.getElementById('confirm-password').value;
+
+     const newPassIcon = document.getElementById('new-pass-icon');
+     const confirmPassIcon = document.getElementById('confirm-pass-icon');
+
+     // Check if the passwords match
+     if (newPassword && confirmPassword) {
+        if (newPassword === confirmPassword) {
+           // Show right (checkmark) icon
+           newPassIcon.className = 'fas fa-check validation-icon valid';
+           confirmPassIcon.className = 'fas fa-check validation-icon valid';
+        } else {
+           // Show wrong (cross) icon
+           newPassIcon.className = 'fas fa-times validation-icon invalid';
+           confirmPassIcon.className = 'fas fa-times validation-icon invalid';
+        }
+     } else {
+        // Hide icons when fields are empty
+        newPassIcon.className = 'fas validation-icon';
+        confirmPassIcon.className = 'fas validation-icon';
+     }
+  }
+
+  // Password validation function before form submission
+  function validatePasswords() {
+     const newPassword = document.getElementById('new-password').value;
+     const confirmPassword = document.getElementById('confirm-password').value;
+
+     if (newPassword !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return false; // Prevent form submission
+     }
+
+     return true; // Allow form submission
+  }
+
+  // Function to check phone number validity
+  function checkPhoneNumber() {
+     const phone = document.getElementById('phone').value;
+     const phoneIcon = document.getElementById('phone-icon');
+     
+     const phonePattern = /^[0-9]{10}$/; // Regex pattern for a 10-digit number
+
+     // Check if phone number matches the pattern
+     if (phonePattern.test(phone)) {
+        phoneIcon.className = 'fas fa-check validation-icon valid'; // Valid
+     } else {
+        phoneIcon.className = 'fas fa-times validation-icon invalid'; // Invalid
+     }
+  }
+
+  // Validate form before submission
+  function validateForm() {
+     const phone = document.getElementById('phone').value;
+     const phonePattern = /^[0-9]{10}$/; // Regex pattern for a 10-digit number
+
+     if (!phonePattern.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false; // Prevent form submission
+     }
+
+     return true; // Allow form submission
+  }
+
+
+</script>
+</body>
+</html>

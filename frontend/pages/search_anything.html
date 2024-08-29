@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider Page</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="../assests/logo2.jpg" alt="Your Logo">
+            </div>
+            <div class="search-bar">
+                <form action="./search_anything.html" method="get" class="search-form">
+                    <input type="text" name="search_box" value="" required placeholder="Search for anything" maxlength="100">
+                    <!-- <button type="submit" class="fas fa-search"></button> -->
+                    <i class="fas fa-search"></i>
+                </form>
+            
+                
+            </div>
+            <div class="nav-links">
+                <a href="#">FAQ</a>
+                <a href="#">Plans & Pricing</a>
+                <a href="./teachportal.html">Become a Tutor</a>
+                <a href="./register.html">Register</a>
+                <a href="./student_login.html">Login</a>
+            </div>
+        </div>
+    </header>
+    
+<section class="courses">
+    <h1 class="heading">Search Results</h1>
+
+    <div class="box-container" id="courses-container">
+        <!-- Dynamic content will be inserted here -->
+    </div>
+</section>
+
+
+
+<!-- Custom JS file link  -->
+<script src="../js/script.js"></script>
+
+<script>
+    // Function to create a course box
+function createCourseBox(subjectName, price, weekdays, tutorName) {
+    const box = document.createElement('div');
+    box.classList.add('box');
+    
+    const tutor = document.createElement('div');
+    tutor.classList.add('tutor');
+    const tutorImg = document.createElement('img');
+    tutorImg.src = 'images/pic-1.jpg';
+    tutorImg.alt = '';
+    const info = document.createElement('div');
+    info.classList.add('info');
+    const h3 = document.createElement('h3');
+    h3.textContent = tutorName;  // Tutor name
+    const span = document.createElement('span');
+    span.textContent = '';  // Empty span
+    info.appendChild(h3);
+    info.appendChild(span);
+    tutor.appendChild(tutorImg);
+    tutor.appendChild(info);
+    
+    const thumb = document.createElement('div');
+    thumb.classList.add('thumb');
+    const thumbImg = document.createElement('img');
+    thumbImg.src = 'images/english.jpg';
+    thumbImg.alt = '';
+    const thumbSpan = document.createElement('span');
+    thumbSpan.textContent = '';  // Empty span
+    thumb.appendChild(thumbImg);
+    thumb.appendChild(thumbSpan);
+    
+    const title = document.createElement('h3');
+    title.classList.add('title');
+    title.textContent = subjectName;
+
+    const priceTag = document.createElement('p');
+    priceTag.textContent = `Price: ${price}`;
+
+    const weekdaysTag = document.createElement('p');
+    weekdaysTag.textContent = `Weekdays: ${weekdays}`;
+    
+    const link = document.createElement('a');
+    link.href = 'viewtutors.html';
+    link.classList.add('inline-btn');
+    link.textContent = 'View Tutors';
+
+    box.appendChild(tutor);
+    box.appendChild(thumb);
+    box.appendChild(title);
+    box.appendChild(priceTag);
+    box.appendChild(weekdaysTag);
+    box.appendChild(link);
+    
+    return box;
+}
+
+// Function to fetch and display search results
+function fetchSearchResults() {
+    const searchQuery = new URLSearchParams(window.location.search).get('search_box');
+
+    if (searchQuery) {
+        fetch(`/backend/search_courses.php?search_box=${encodeURIComponent(searchQuery)}`)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('courses-container');
+                container.innerHTML = ''; // Clear previous results
+
+                if (data.length === 0) {
+                    const noResults = document.createElement('p');
+                    noResults.textContent = 'No courses found.';
+                    container.appendChild(noResults);
+                } else {
+                    data.forEach(course => {
+                        const courseBox = createCourseBox(course.subjectname, course.price, course.weekdays, course.tutor_name);
+                        container.appendChild(courseBox);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching search results:', error));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchSearchResults();
+    const isLoggedIn = localStorage.getItem('email');
+
+    // If the user is not logged in, redirect them to the login page
+    if (!isLoggedIn) {
+        window.location.href = 'index.html'; 
+    }
+});
+
+</script>
+   
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+
+            <p>&copy; copyright @ AlgAI </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Image Slider -->
+    
+</body>
+
+</html>
